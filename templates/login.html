@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="heading">Login</div>
+        <div class="line"></div>
+        <div class="field">
+            <b>Username</b>
+            <input type="text" required class="inp" placeholder="Enter your username" name="username">
+        </div>
+        <div class="field">
+            <b>Password</b>
+            <input type="password" required class="inp" placeholder="Enter your password" name="password">
+        </div>
+        <div class="field">
+            <input type="submit" class="submit-button" value="Login">
+        </div>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+
+    <div class="field">
+        <b class="show">Don't have an account?</b>
+        <a href="/" class="anc">SignUp</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Todo{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    
+    <section id="todo-section">
+        {% block h1 %}
+            <div id="user-name">
+                <h1>Hello, {{user}}!</h1>
+            </div>
+        {% endblock %}
+    
+        <form method="post" id="form-todo">
+            {% csrf_token %}
+            <div id="title-sign">
+                <div id="title">Get Thins Done</div>
+        
+                <div id="sign-div">
+                    <a href="{% url 'signout' %}" title="Logout" class="sign"><i class="fas fa-right-from-bracket"></i></a>
+                </div>
+            </div>
+
+            <input type="text" name="title" required placeholder="Update Task" class="inp" value={{task.title}}>
+            <input type="submit" id="todo-btn" value="Save" class="submit-button">
+        </form>
+
+        {% for todo in user_todos %}
+            <div id="todo">
+                <h5 class="todo-items">{{todo.srno}}</h5>
+                <p class="todo-items">{{todo.title}}</p>
+                <div class="todo-items">
+                    <a href="/edit_task/{{todo.srno}}" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="/delete/{{todo.srno}}" title="Delete"><i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

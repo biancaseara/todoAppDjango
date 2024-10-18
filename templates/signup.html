@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="heading">register</div>
+        <div class="line"></div>
+        <div class="field">
+            <b>Username</b>
+            <input type="text" required class="inp" placeholder="Enter a username" name="username">
+        </div>
+        <div class="field">
+            <b>Email</b>
+            <input type="email" required class="inp" placeholder="Enter your email" name="email">
+        </div>
+        <div class="field">
+            <b>Password</b>
+            <input type="password" required class="inp" placeholder="Enter a password" name="password">
+        </div>
+        <div class="field">
+            <input type="submit" class="submit-button" value="signup">
+        </div>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <div class="field">
+        <b class="show">Already have an account?</b>
+        <a href="/login" class="anc">Login</a>
+    </div>
+{% endblock %}
